@@ -1,4 +1,4 @@
-package com.itpm.fashionretailapi.service.Impl;
+package com.itpm.fashionretailapi.service.impl;
 
 import org.springframework.stereotype.Service;
 
