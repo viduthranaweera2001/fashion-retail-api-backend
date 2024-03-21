@@ -1,2 +1,4 @@
-package com.itpm.fashionretailapi.service.impl;public class ProductImpl {
+package com.itpm.fashionretailapi.service.impl;
+
+public class ProductImpl {
 }

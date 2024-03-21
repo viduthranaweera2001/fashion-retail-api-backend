@@ -3,7 +3,7 @@ package com.itpm.fashionretailapi.controller.dto;
 import lombok.Data;
 
 @Data
-public class OrderRequestDto {
+public class ProductRequestDto {
     private String name;
     private Float price;
     private Integer stock;

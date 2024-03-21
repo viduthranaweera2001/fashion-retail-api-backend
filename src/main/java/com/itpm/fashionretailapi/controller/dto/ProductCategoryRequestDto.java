@@ -1,2 +1,9 @@
-package com.itpm.fashionretailapi.controller.dto;public class ProductCategoryDto {
+package com.itpm.fashionretailapi.controller.dto;
+
+import lombok.Data;
+
+@Data
+public class ProductCategoryRequestDto {
+    private Long id;
+    private String name;
 }
