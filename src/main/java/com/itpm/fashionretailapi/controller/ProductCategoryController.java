@@ -9,19 +9,22 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
 public class ProductCategoryController {
-    private ProductCategoryService productService;
+    private ProductCategoryService productCategoryService;
     private ModelMapper modelMapper;
     @PostMapping(value = "/productCategories",headers = "version=v1")
-    public ResponseEntity<ProductCategoryResponse> createProductCategory(@RequestBody ProductCategoryRequset productCategoryRequset)throws ProductCategoryNotFoundException {
+    public ResponseEntity<ProductCategoryResponse> createProductCategory(@RequestBody ProductCategoryRequset productCategoryRequset){
         ProductCategoryRequestDto productCategoryRequestDto = modelMapper.map(productCategoryRequset,ProductCategoryRequestDto.class);
-        ProductCategoryResponse createdCategory = productService.createCategory(productCategoryRequestDto);
+        ProductCategoryResponse createdCategory = productCategoryService.createCategory(productCategoryRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCategory);
+    }
+
+    @DeleteMapping(value = "/productCategories/{category-id}",headers = "version=v1")
+    public ProductCategoryResponse deleteProductCategory(@PathVariable("category-id") Long id)throws ProductCategoryNotFoundException{
+        return productCategoryService.deleteCategory(id);
     }
 }
