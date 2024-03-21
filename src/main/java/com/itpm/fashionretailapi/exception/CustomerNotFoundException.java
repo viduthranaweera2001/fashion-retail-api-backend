@@ -1,7 +1,7 @@
 package com.itpm.fashionretailapi.exception;
 
-public class CustomerNotFoundException extends Exception{
-    public CustomerNotFoundException (String errMsg){
-        super(errMsg);
+public class CustomerNotFoundException extends NotFoundException{
+    public CustomerNotFoundException (String errorMsg){
+        super(errorMsg);
     }
 }

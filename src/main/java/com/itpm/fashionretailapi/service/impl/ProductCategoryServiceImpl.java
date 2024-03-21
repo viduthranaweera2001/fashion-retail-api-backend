@@ -2,6 +2,7 @@ package com.itpm.fashionretailapi.service.impl;
 
 import com.itpm.fashionretailapi.controller.dto.ProductCategoryRequestDto;
 import com.itpm.fashionretailapi.controller.response.ProductCategoryResponse;
+import com.itpm.fashionretailapi.exception.ProductCategoryNotFoundException;
 import com.itpm.fashionretailapi.model.ProductCategory;
 import com.itpm.fashionretailapi.repository.ProductCategoryRepository;
 import com.itpm.fashionretailapi.service.ProductCategoryService;
@@ -22,6 +23,19 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
         ProductCategoryResponse productCategoryResponse = new ProductCategoryResponse();
         productCategoryResponse.setResponseMsg(productCategory.getName()+" Created with id "+productCategory.getId());
+
+        return productCategoryResponse;
+    }
+
+    @Override
+    public ProductCategoryResponse deleteCategory(Long id)throws ProductCategoryNotFoundException{
+        ProductCategory productCategory = productCategoryRepository.findById(id).orElseThrow(
+                ()->new ProductCategoryNotFoundException("Product category not found !")
+        );
+        productCategoryRepository.deleteById(id);
+        ProductCategoryResponse productCategoryResponse = new ProductCategoryResponse();
+        productCategoryResponse.setResponseMsg(productCategory.getName()+" deleted!");
+        System.out.println(productCategoryResponse.getResponseMsg());
 
         return productCategoryResponse;
     }
