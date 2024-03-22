@@ -21,10 +21,12 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
         ProductCategory productCategory = modelMapper.map(productCategoryRequestDto,ProductCategory.class);
         productCategoryRepository.save(productCategory);
 
-        ProductCategoryResponse productCategoryResponse = new ProductCategoryResponse();
-        productCategoryResponse.setResponseMsg(productCategory.getName()+" Created with id "+productCategory.getId());
+//        ProductCategoryResponse productCategoryResponse = new ProductCategoryResponse();
+//        productCategoryResponse.setResponseMsg(productCategory.getName()+" Created with id "+productCategory.getId());
 
-        return productCategoryResponse;
+        return ProductCategoryResponse.builder()
+                .responseMsg(productCategory.getName()+" Created with id "+productCategory.getId())
+                .build();
     }
 
     @Override
@@ -33,10 +35,9 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
                 ()->new ProductCategoryNotFoundException("Product category not found !")
         );
         productCategoryRepository.deleteById(id);
-        ProductCategoryResponse productCategoryResponse = new ProductCategoryResponse();
-        productCategoryResponse.setResponseMsg(productCategory.getName()+" deleted!");
-        System.out.println(productCategoryResponse.getResponseMsg());
 
-        return productCategoryResponse;
+        return ProductCategoryResponse.builder()
+                .responseMsg(productCategory.getName()+" Deleted!")
+                .build();
     }
 }
