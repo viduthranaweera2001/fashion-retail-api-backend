@@ -10,6 +10,9 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @AllArgsConstructor
 @Service
 public class ProductCategoryServiceImpl implements ProductCategoryService {
@@ -21,10 +24,21 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
         ProductCategory productCategory = modelMapper.map(productCategoryRequestDto,ProductCategory.class);
         productCategoryRepository.save(productCategory);
 
-        ProductCategoryResponse productCategoryResponse = new ProductCategoryResponse();
-        productCategoryResponse.setResponseMsg(productCategory.getName()+" Created with id "+productCategory.getId());
+        return ProductCategoryResponse.builder()
+                .responseMsg(productCategory.getName()+" Created with id "+productCategory.getId())
+                .build();
+    }
 
-        return productCategoryResponse;
+    @Override
+    public List<ProductCategoryRequestDto> getAllCategory()throws ProductCategoryNotFoundException {
+        List<ProductCategory> productCategoryList = productCategoryRepository.findAll();
+
+        if(productCategoryList.isEmpty())
+            throw new ProductCategoryNotFoundException("Product Categories Not found!");
+
+        return productCategoryList.stream()
+                .map(productCategory -> modelMapper.map(productCategory,ProductCategoryRequestDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -33,10 +47,9 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
                 ()->new ProductCategoryNotFoundException("Product category not found !")
         );
         productCategoryRepository.deleteById(id);
-        ProductCategoryResponse productCategoryResponse = new ProductCategoryResponse();
-        productCategoryResponse.setResponseMsg(productCategory.getName()+" deleted!");
-        System.out.println(productCategoryResponse.getResponseMsg());
 
-        return productCategoryResponse;
+        return ProductCategoryResponse.builder()
+                .responseMsg(productCategory.getName()+" Deleted!")
+                .build();
     }
 }

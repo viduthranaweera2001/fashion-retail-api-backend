@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 public class ProductCategoryController {
@@ -21,6 +23,12 @@ public class ProductCategoryController {
         ProductCategoryRequestDto productCategoryRequestDto = modelMapper.map(productCategoryRequset,ProductCategoryRequestDto.class);
         ProductCategoryResponse createdCategory = productCategoryService.createCategory(productCategoryRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCategory);
+    }
+
+    @GetMapping("/productCategories")
+    public ResponseEntity<List<ProductCategoryRequestDto>> getAllProductCategory()throws ProductCategoryNotFoundException{
+        List<ProductCategoryRequestDto> productCategoryRequestDtoList = productCategoryService.getAllCategory();
+        return ResponseEntity.status(HttpStatus.OK).body(productCategoryRequestDtoList);
     }
 
     @DeleteMapping(value = "/productCategories/{category-id}",headers = "version=v1")

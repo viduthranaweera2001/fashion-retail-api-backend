@@ -3,6 +3,8 @@ package com.itpm.fashionretailapi.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Data
 @Table(name = "products")
@@ -18,13 +20,14 @@ public class Product {
     private String color;
     private String brand;
     private String imgUrl;
-    private Float rating;
-    private String reviews;
 
     @ManyToOne
     private ProductCategory productCategory;
 
     @ManyToOne
     private Supplier supplier;
+
+    @OneToMany(mappedBy = "product")
+    private List<Review_Rating> reviewRatingList;
 
 }
