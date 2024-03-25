@@ -33,4 +33,9 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Review_Rating> reviewRatingList;
+
+    // Add a method to retrieve the profile image path or filename
+    public String getProfileImage() {
+        return avatar; // Assuming avatar represents the profile image path or filename
+    }
 }
