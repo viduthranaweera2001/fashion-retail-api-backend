@@ -40,8 +40,11 @@ public class ProductController {
         List<ProductRespo> productRespoList = productService.getProductByCatId(id);
         return ResponseEntity.status(HttpStatus.OK).body(productRespoList);
     }
+
     @PutMapping("/products/{product_id}")
     public ResponseEntity<ProductResponse> updateProductById(@PathVariable("product_id") Long id,@RequestBody ProductRequest productRequest)throws ProductNotFoundException{
-        return null;
+        ProductRequestDto productRequestDto = modelMapper.map(productRequest,ProductRequestDto.class);
+        ProductResponse productResponse = productService.updateProductByPID(id,productRequestDto);
+        return ResponseEntity.status(HttpStatus.OK).body(productResponse);
     }
 }

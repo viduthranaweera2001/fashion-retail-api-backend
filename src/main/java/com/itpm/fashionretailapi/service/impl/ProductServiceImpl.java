@@ -77,4 +77,9 @@ public class ProductServiceImpl implements ProductService {
                 .map(product -> modelMapper.map(product,ProductRespo.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public ProductResponse updateProductByPID(Long id, ProductRequestDto productRequestDto) {
+        return null;
+    }
 }
