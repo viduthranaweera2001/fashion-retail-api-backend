@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class ProductRespo {
+    private Long id;
     private String name;
     private Float price;
     private Integer stock;

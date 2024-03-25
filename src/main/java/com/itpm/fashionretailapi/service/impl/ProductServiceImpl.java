@@ -5,10 +5,13 @@ import com.itpm.fashionretailapi.controller.response.ProductRespo;
 import com.itpm.fashionretailapi.controller.response.ProductResponse;
 import com.itpm.fashionretailapi.exception.ProductCategoryNotFoundException;
 import com.itpm.fashionretailapi.exception.ProductNotFoundException;
+import com.itpm.fashionretailapi.exception.SupplierNotFoundException;
 import com.itpm.fashionretailapi.model.Product;
 import com.itpm.fashionretailapi.model.ProductCategory;
+import com.itpm.fashionretailapi.model.Supplier;
 import com.itpm.fashionretailapi.repository.ProductCategoryRepository;
 import com.itpm.fashionretailapi.repository.ProductRepository;
+import com.itpm.fashionretailapi.repository.SupplierRepository;
 import com.itpm.fashionretailapi.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -23,16 +26,23 @@ public class ProductServiceImpl implements ProductService {
 
     private ProductRepository productRepository;
     private ProductCategoryRepository productCategoryRepository;
+    private SupplierRepository supplierRepository;
     private ModelMapper modelMapper;
     @Override
-    public ProductResponse createProduct(Long id, ProductRequestDto productRequestDto)throws ProductCategoryNotFoundException {
+    public ProductResponse createProduct(Long id, ProductRequestDto productRequestDto) throws ProductCategoryNotFoundException, SupplierNotFoundException {
 
         ProductCategory productCategory = productCategoryRepository.findById(id).orElseThrow(
                 ()->new ProductCategoryNotFoundException("Product Category not found!")
         );
 
+        Supplier supplier = supplierRepository.findByName(productRequestDto.getSup_name());
+
+        if(supplier == null)
+            throw new SupplierNotFoundException("Supplier not found with name "+productRequestDto.getSup_name());
+
         Product product = modelMapper.map(productRequestDto,Product.class);
         product.setProductCategory(productCategory);
+        product.setSupplier(supplier);
 
         productRepository.save(product);
 
