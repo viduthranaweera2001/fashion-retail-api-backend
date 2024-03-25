@@ -1,10 +1,9 @@
-package com.itpm.fashionretailapi.controller.request;
+package com.itpm.fashionretailapi.controller.response;
 
 import lombok.Data;
 
 @Data
-public class ProductRequest {
-    private String sup_name;
+public class ProductRespo {
     private String name;
     private Float price;
     private Integer stock;
