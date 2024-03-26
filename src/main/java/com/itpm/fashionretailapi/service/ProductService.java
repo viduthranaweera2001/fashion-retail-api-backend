@@ -15,6 +15,6 @@ public interface ProductService {
     ProductResponse createProduct(Long id, ProductRequestDto productRequestDto) throws ProductCategoryNotFoundException, SupplierNotFoundException;
     List<ProductRespo> getAllProducts()throws ProductNotFoundException;
     List<ProductRespo> getProductByCatId(Long id)throws ProductCategoryNotFoundException,ProductNotFoundException;
-    ProductResponse updateProductByPID(Long id,ProductRequestDto productRequestDto);
+    ProductResponse updateProductByPID(Long id,ProductRequestDto productRequestDto)throws ProductNotFoundException;
 
 }

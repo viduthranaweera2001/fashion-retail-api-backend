@@ -15,8 +15,10 @@ import com.itpm.fashionretailapi.repository.SupplierRepository;
 import com.itpm.fashionretailapi.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.ProviderNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -79,7 +81,21 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductResponse updateProductByPID(Long id, ProductRequestDto productRequestDto) {
-        return null;
+    public ProductResponse updateProductByPID(Long id, ProductRequestDto productRequestDto)throws ProductNotFoundException {
+        Product product = productRepository.findById(id).orElseThrow(
+                ()->new ProductNotFoundException("Product Not Found!")
+        );
+
+        if(!productRequestDto.getPrice().isNaN())
+            product.setPrice(productRequestDto.getPrice());
+        if(!productRequestDto.getStock().describeConstable().isEmpty()) {
+            product.setStock(productRequestDto.getStock());
+        }
+
+        productRepository.save(product);
+
+        return ProductResponse.builder()
+                .responseMsg("product updated with id "+product.getId())
+                .build();
     }
 }
