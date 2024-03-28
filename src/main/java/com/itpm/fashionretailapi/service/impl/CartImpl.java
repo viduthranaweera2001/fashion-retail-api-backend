@@ -14,8 +14,6 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @AllArgsConstructor
 
@@ -50,9 +48,16 @@ public class CartImpl implements CartService {
     }
 
     @Override
-    public CartResponse deleteitems(Long id, CartDto cartDto) throws ProductNotFound {
-        return null;
+    public CartResponse deleteitems(Long id) throws ProductNotFound {
+        Cart cart= cartRepository.findById(id).orElseThrow(
+                ()->new ProductNotFound("Cart id not found")
+        );
+        cartRepository.deleteById(id);
+
+        return CartResponse.builder()
+                .responseMsg(cart.getId()+" Deleted!")
+                .build();
     }
 
-    //    public Del
+
 }
