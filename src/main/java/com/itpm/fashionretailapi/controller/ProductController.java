@@ -18,6 +18,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin("http://localhost:3000")
 public class ProductController {
     private ModelMapper modelMapper;
     private ProductService productService;
@@ -33,6 +34,12 @@ public class ProductController {
     public ResponseEntity<List<ProductRespo>> getAllProducts()throws ProductNotFoundException {
         List<ProductRespo> productRespoList = productService.getAllProducts();
         return ResponseEntity.status(HttpStatus.OK).body(productRespoList);
+    }
+
+    @GetMapping("/products/{product_id}")
+    public ResponseEntity<ProductRespo> getProductById(@PathVariable ("product_id")Long id )throws ProductNotFoundException{
+        ProductRespo productRespo = productService.getProductById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(productRespo);
     }
 
     @GetMapping(value = "/productsCategories/{cat_id}/products")

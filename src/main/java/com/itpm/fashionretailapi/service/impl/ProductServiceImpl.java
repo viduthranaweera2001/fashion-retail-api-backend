@@ -66,6 +66,24 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public ProductRespo getProductById(Long id) throws ProductNotFoundException {
+        Product product = productRepository.findById(id).orElseThrow(
+                ()->new ProductNotFoundException("Prduct Not Found!")
+        );
+
+        return ProductRespo.builder()
+                .id(product.getId())
+                .name(product.getName())
+                .brand(product.getBrand())
+                .color(product.getColor())
+                .price(product.getPrice())
+                .imgUrl(product.getImgUrl())
+                .stock(product.getStock())
+                .description(product.getDescription())
+                .build();
+    }
+
+    @Override
     public List<ProductRespo> getProductByCatId(Long id) throws ProductCategoryNotFoundException, ProductNotFoundException {
         ProductCategory productCategory = productCategoryRepository.findById(id).orElseThrow(
                 ()->new ProductCategoryNotFoundException("Product Category Not Found with "+id)

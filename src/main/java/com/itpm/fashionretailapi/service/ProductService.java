@@ -16,5 +16,6 @@ public interface ProductService {
     List<ProductRespo> getAllProducts()throws ProductNotFoundException;
     List<ProductRespo> getProductByCatId(Long id)throws ProductCategoryNotFoundException,ProductNotFoundException;
     ProductResponse updateProductByPID(Long id,ProductRequestDto productRequestDto)throws ProductNotFoundException;
+    ProductRespo getProductById(Long id)throws ProductNotFoundException;
 
 }
