@@ -78,5 +78,5 @@ public class UserController {
         return  ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType)).body(resource);
     }
 
-    //
+
 }
