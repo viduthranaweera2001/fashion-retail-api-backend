@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class ProductRequestDto {
     private String name;
+    private String sup_name;
     private Float price;
     private Integer stock;
     private String description;
