@@ -35,7 +35,6 @@ public class ProductController {
         List<ProductRespo> productRespoList = productService.getAllProducts();
         return ResponseEntity.status(HttpStatus.OK).body(productRespoList);
     }
-
     @GetMapping("/products/{product_id}")
     public ResponseEntity<ProductRespo> getProductById(@PathVariable ("product_id")Long id )throws ProductNotFoundException{
         ProductRespo productRespo = productService.getProductById(id);
