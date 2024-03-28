@@ -1,8 +1,6 @@
 package com.itpm.fashionretailapi.service;
 
-import com.itpm.fashionretailapi.controller.request.CreateUserRequest;
 import com.itpm.fashionretailapi.controller.request.SupplierRequest;
-import com.itpm.fashionretailapi.controller.response.CreateUserResponse;
 import com.itpm.fashionretailapi.controller.response.IdResponse;
 import com.itpm.fashionretailapi.controller.response.SupplierResponse;
 import com.itpm.fashionretailapi.exception.CustomerNotFoundException;
@@ -21,6 +19,5 @@ public interface SupplierService {
 
     SupplierResponse updateDetails(Long id, SupplierRequest supplierRequest) throws SupplierNotFoundException;
 
-    IdResponse deleteSupplier(Long id) throws SupplierNotFoundException
-            ;
+    IdResponse deleteSupplier(Long id) throws SupplierNotFoundException;
 }
