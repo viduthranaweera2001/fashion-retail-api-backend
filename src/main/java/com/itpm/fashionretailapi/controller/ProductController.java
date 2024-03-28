@@ -23,5 +23,4 @@ public class ProductController {
         ProductResponse productResponse = productService.createProduct(id,productRequestDto);
          return ResponseEntity.status(HttpStatus.CREATED).body(productResponse);
     }
-
 }
