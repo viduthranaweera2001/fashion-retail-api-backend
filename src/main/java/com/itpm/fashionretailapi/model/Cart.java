@@ -13,4 +13,6 @@ public class Cart {
 
     @ManyToOne
     private User user;
+    @ManyToOne
+    private Product product;
 }
