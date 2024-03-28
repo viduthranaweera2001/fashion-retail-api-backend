@@ -7,5 +7,6 @@ import lombok.Data;
 @Data
 public class CartRequest {
     private String name;
+    private Integer quantity;
 
 }

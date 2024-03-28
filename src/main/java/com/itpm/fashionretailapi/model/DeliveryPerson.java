@@ -3,15 +3,17 @@ package com.itpm.fashionretailapi.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
+import java.util.List;
+
 @Data
-@Table(name = "deliveries")
-public class Delivery {
+@Entity
+@Table(name ="delivery_Persons")
+public class DeliveryPerson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
 
-
+    @OneToMany(mappedBy ="deliveryPerson" )
+    private List<DeliveryActionPlaced> deliveryActionPlacedList;
 }

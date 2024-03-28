@@ -28,8 +28,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Cart> cartList;
 
-    @OneToMany(mappedBy = "user")
-    private List<Delivery> deliveryList;
 
     @OneToMany(mappedBy = "user")
     private List<Review_Rating> reviewRatingList;

@@ -38,6 +38,8 @@ public class CartImpl implements CartService {
 
         Cart cart = new Cart();
 
+        cart.setPrice((double) (product.getPrice()* cartDto.getQuantity()));
+        cart.setQuantity(cartDto.getQuantity());
         cart.setProduct(product);
         cart.setUser(user);
         cartRepository.save(cart);
@@ -47,5 +49,10 @@ public class CartImpl implements CartService {
                 .build();
     }
 
+    @Override
+    public CartResponse deleteitems(Long id, CartDto cartDto) throws ProductNotFound {
+        return null;
+    }
 
+    //    public Del
 }
