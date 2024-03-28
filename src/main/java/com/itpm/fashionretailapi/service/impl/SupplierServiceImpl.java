@@ -78,9 +78,12 @@ public class SupplierServiceImpl implements SupplierService {
         );
 
         supplierRepository.deleteById(id);
-        IdResponse idResponse = new IdResponse();
-        idResponse.setMessage(supplier.getName()+" Deleted!");
 
-        return idResponse;
+        return IdResponse.builder()
+                .message(supplier.getName()+" Deleted!")
+                .build();
+//        IdResponse idResponse = new IdResponse();
+//        idResponse.setMessage(supplier.getName()+" Deleted!");
+//        return idResponse;
     }
 }

@@ -18,7 +18,6 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@CrossOrigin("http://localhost:3000")
 public class ProductController {
     private ModelMapper modelMapper;
     private ProductService productService;
@@ -35,7 +34,6 @@ public class ProductController {
         List<ProductRespo> productRespoList = productService.getAllProducts();
         return ResponseEntity.status(HttpStatus.OK).body(productRespoList);
     }
-
     @GetMapping("/products/{product_id}")
     public ResponseEntity<ProductRespo> getProductById(@PathVariable ("product_id")Long id )throws ProductNotFoundException{
         ProductRespo productRespo = productService.getProductById(id);
@@ -54,4 +52,5 @@ public class ProductController {
         ProductResponse productResponse = productService.updateProductByPID(id,productRequestDto);
         return ResponseEntity.status(HttpStatus.OK).body(productResponse);
     }
+
 }
