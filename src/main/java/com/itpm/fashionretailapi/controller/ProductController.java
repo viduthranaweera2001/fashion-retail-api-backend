@@ -18,7 +18,6 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@CrossOrigin("http://localhost:3000")
 public class ProductController {
     private ModelMapper modelMapper;
     private ProductService productService;
@@ -53,4 +52,5 @@ public class ProductController {
         ProductResponse productResponse = productService.updateProductByPID(id,productRequestDto);
         return ResponseEntity.status(HttpStatus.OK).body(productResponse);
     }
+
 }
