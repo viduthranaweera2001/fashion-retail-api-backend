@@ -38,7 +38,7 @@ public class CartImpl implements CartService {
 
         Cart cart = new Cart();
 
-        cart.setPrice((double) (product.getPrice()* cartDto.getQuantity()));
+        cart.setPrice((float) (product.getPrice()* cartDto.getQuantity()));
         cart.setQuantity(cartDto.getQuantity());
         cart.setProduct(product);
         cart.setUser(user);
