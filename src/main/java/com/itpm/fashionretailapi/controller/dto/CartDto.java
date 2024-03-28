@@ -9,5 +9,6 @@ public class CartDto {
 
      private Long id;
      private String name;
+     private Integer quantity;
 
 }
