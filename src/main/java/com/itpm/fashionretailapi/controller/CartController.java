@@ -33,6 +33,10 @@ public class CartController {
         return cartService.deleteitems(id);
     }
 
-//    @PutMapping("/product/{cart-id}/editdetails")
-//    public
+    @PutMapping("/product/{cart-id}/editdetails")
+    public CartResponse updatecart(@PathVariable ("cart-id") Long id,@RequestBody CartRequest cartRequest) throws ProductNotFound{
+//        CartDto cartDto =modelMapper.map(cartRequest,CartDto.class);
+//        CartResponse cartResponse=cartService.updatecart(id,cartRequest);
+        return cartService.updatecart(id,cartRequest);
+    }
 }
