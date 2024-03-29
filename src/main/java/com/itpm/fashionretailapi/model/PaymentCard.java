@@ -1,23 +1,20 @@
 package com.itpm.fashionretailapi.model;
-
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "payments")
-public class Payment {
+@Table(name="payment_cards")
+public class PaymentCard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private Status status;
+    private String cardHolderName;
+    private String cardNo;
+    private String expDate;
+    private Integer cvvNo;
 
     @ManyToOne
     private User user;
-
-    @OneToOne
-    private Order order;
-
 }

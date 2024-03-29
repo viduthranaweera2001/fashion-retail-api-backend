@@ -23,6 +23,9 @@ public class User {
     private List<Payment> paymentList;
 
     @OneToMany(mappedBy = "user")
+    private List<PaymentCard> paymentCardList;
+
+    @OneToMany(mappedBy = "user")
     private List<Cart> cartList;
 
     @OneToMany(mappedBy = "user")
