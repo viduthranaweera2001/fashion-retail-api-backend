@@ -41,7 +41,7 @@ public class DeliveryActionPlacedController {
     }
 
     @DeleteMapping("/deliveries/{deliveryId}")
-    public IdResponse deleteDeliveryDetails(@PathVariable("deliveryId") Long id) throws NotFoundException{
+    public String deleteDeliveryDetails(@PathVariable("deliveryId") Long id) throws NotFoundException{
         return deliveryService.deleteDeliveryDetails(id);
     }
 }

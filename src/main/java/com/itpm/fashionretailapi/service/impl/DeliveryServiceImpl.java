@@ -12,6 +12,7 @@ import com.itpm.fashionretailapi.repository.DeliveryPersonRepository;
 import com.itpm.fashionretailapi.repository.DeliveryRepository;
 import com.itpm.fashionretailapi.repository.OrderRepository;
 
+import com.itpm.fashionretailapi.repository.UserRepository;
 import com.itpm.fashionretailapi.service.DeliveryService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     private OrderRepository orderRepository;
     private DeliveryRepository deliveryRepository;
     private DeliveryPersonRepository deliveryPersonRepository;
+    private UserRepository userRepository;
     @Override
     public DeliveryResponse saveDelivery(DeliveryRequest deliveryRequest, Long orderId) throws OrderNotFoundException {
 
@@ -35,8 +37,12 @@ public class DeliveryServiceImpl implements DeliveryService {
         Order order = orderRepository.findById(orderId).orElseThrow(
                 () -> new OrderNotFoundException("Order not found" + orderId));
 
+        User customer = userRepository.findByName(deliveryRequest.getOrderPlacedCustomer());
+
         System.out.println(order.getAddress());
         System.out.println(order.getPhoneNumber());
+        System.out.println(customer.getEmail());
+        System.out.println(customer.getName());
 
         DeliveryActionPlaced deliveryActionPlaced = new DeliveryActionPlaced();
 
@@ -44,6 +50,8 @@ public class DeliveryServiceImpl implements DeliveryService {
         deliveryActionPlaced.setDeliveryPersonName(deliveryPerson.getName());
         deliveryActionPlaced.setAddress(order.getAddress());
         deliveryActionPlaced.setPhoneNo(order.getPhoneNumber());
+        deliveryActionPlaced.setCustomerEmail(customer.getEmail());
+        deliveryActionPlaced.setCustomerName(customer.getName());
 
         deliveryActionPlaced.setOrder(order);
 
@@ -140,17 +148,14 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public IdResponse deleteDeliveryDetails(Long id) throws NotFoundException {
+    public String deleteDeliveryDetails(Long id) throws NotFoundException {
         DeliveryActionPlaced deliveryActionPlaced = deliveryRepository.findById(id).orElseThrow(
                 () -> new NotFoundException(" No Such Delivery Found With Id "+id)
         );
 
         deliveryRepository.deleteById(id);
 
-        IdResponse idResponse = new IdResponse();
-        idResponse.setMessage("Delivery ID "+id+" Details Delete Successfully");
-
-        return idResponse;
+        return ("Delivery ID "+id+" Details Delete Successfully");
 
     }
 }

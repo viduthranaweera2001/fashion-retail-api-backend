@@ -23,9 +23,9 @@ public interface DeliveryService  {
 
     DeliveryResponse updateDetails(Long id, DeliveryRequestDto deliveryRequestDto) throws NotFoundException;
 
-    IdResponse deleteDeliveryDetails(Long id) throws NotFoundException;
+//    IdResponse deleteDeliveryDetails(Long id) throws NotFoundException;
 
-
+    String  deleteDeliveryDetails(Long id) throws NotFoundException;
 
 
 }
