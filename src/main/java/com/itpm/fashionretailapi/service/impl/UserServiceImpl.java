@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
             throw new CustomerNotFoundException("No Any Customer Found Here");
         }
         return usersList.stream()
-                .map((details -> modelMapper.map(details, UserResponse.class)))
+                .map(details -> modelMapper.map(details, UserResponse.class))
                 .collect(Collectors.toList());
     }
 
