@@ -45,7 +45,7 @@ public class CartImpl implements CartService {
         cartRepository.save(cart);
 
         return CartResponse.builder()
-                .responseMsg(product.getName() + " added to cart with id: " + cart.getId())
+                .responsgeMsg(product.getName() + " added to cart with id: " + cart.getId())
                 .build();
     }
 
