@@ -65,6 +65,8 @@ public class SupplierServiceImpl implements SupplierService {
         supplier.setPhoneNo(supplierRequest.getPhoneNo());
         supplier.setNic(supplierRequest.getNic());
 
+        supplierRepository.save(supplier);
+
         SupplierResponse supplierResponse = modelMapper.map(supplier, SupplierResponse.class);
 
         return supplierResponse;
@@ -78,9 +80,12 @@ public class SupplierServiceImpl implements SupplierService {
         );
 
         supplierRepository.deleteById(id);
-        IdResponse idResponse = new IdResponse();
-        idResponse.setMessage(supplier.getName()+" Deleted!");
 
-        return idResponse;
+        return IdResponse.builder()
+                .message(supplier.getName()+" Deleted!")
+                .build();
+//        IdResponse idResponse = new IdResponse();
+//        idResponse.setMessage(supplier.getName()+" Deleted!");
+//        return idResponse;
     }
 }

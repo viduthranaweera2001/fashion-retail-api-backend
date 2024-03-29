@@ -100,10 +100,14 @@ public class UserServiceImpl implements UserService {
                 () -> new CustomerNotFoundException("Customer  Not Found With Id "+id)
         );
         userRepository.deleteById(id);
-        IdResponse idResponse = new IdResponse();
-        idResponse.setMessage(user.getName()+" Deleted!");
+//        IdResponse idResponse = new IdResponse();
+//        idResponse.setMessage(user.getName()+" Deleted!");
 
-        return idResponse;
+//        return idResponse;
+
+        return IdResponse.builder()
+                .message(user.getName()+" Deleted!")
+                .build();
     }
 
 

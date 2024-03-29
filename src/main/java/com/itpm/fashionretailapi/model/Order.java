@@ -11,12 +11,13 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Float totalPrice;
     private Float shippingPrice;
     private String address;
     private String city;
     private String phoneNumber;
     private String postalCode;
+    private Float TotalPrice;
+    private String name;
 
     @Enumerated(EnumType.STRING)
     private Status status;

@@ -37,8 +37,7 @@ public class CartImpl implements CartService {
         if (user == null)
             throw new ProductNotFound("User not found");
         Cart cart = new Cart();
-
-        cart.setPrice((double) (product.getPrice() * cartDto.getQuantity()));
+        cart.setPrice((product.getPrice()* cartDto.getQuantity()));
         cart.setQuantity(cartDto.getQuantity());
         cart.setProduct(product);
         cart.setUser(user);
