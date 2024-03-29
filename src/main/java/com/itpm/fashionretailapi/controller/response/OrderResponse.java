@@ -5,14 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
 public class OrderResponse {
-    private Long id;
-    private Float shippingPrice;
+
+    private String name;
+    private String phoneNumber;
     private String address;
     private String city;
-    private String phoneNumber;
     private String postalCode;
-    private Float price;
-    private User user;
+    private Float shippingPrice;
+    private Float TotalPrice;
+
 }

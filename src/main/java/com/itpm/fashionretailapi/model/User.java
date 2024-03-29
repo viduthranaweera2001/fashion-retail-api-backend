@@ -25,6 +25,8 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Cart> cartList;
 
+    @OneToMany(mappedBy = "user")
+    private List<Order> orderList;
 
     @OneToMany(mappedBy = "user")
     private List<Review_Rating> reviewRatingList;
