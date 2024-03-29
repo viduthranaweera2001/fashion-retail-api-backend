@@ -65,6 +65,8 @@ public class SupplierServiceImpl implements SupplierService {
         supplier.setPhoneNo(supplierRequest.getPhoneNo());
         supplier.setNic(supplierRequest.getNic());
 
+        supplierRepository.save(supplier);
+
         SupplierResponse supplierResponse = modelMapper.map(supplier, SupplierResponse.class);
 
         return supplierResponse;

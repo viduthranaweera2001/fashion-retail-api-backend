@@ -1,7 +1,9 @@
 package com.itpm.fashionretailapi.service;
 
+import com.itpm.fashionretailapi.controller.dto.DeliveryRequestDto;
 import com.itpm.fashionretailapi.controller.request.DeliveryRequest;
 import com.itpm.fashionretailapi.controller.response.DeliveryResponse;
+import com.itpm.fashionretailapi.controller.response.IdResponse;
 import com.itpm.fashionretailapi.exception.CustomerNotFoundException;
 import com.itpm.fashionretailapi.exception.NotFoundException;
 import com.itpm.fashionretailapi.exception.OrderNotFoundException;
@@ -18,6 +20,12 @@ public interface DeliveryService  {
     List<DeliveryResponse> getAllDeliveryDetails() throws OrderNotFoundException;
 
     DeliveryResponse getDeliveryOrderDetailsById(Long id) throws NotFoundException;
+
+    DeliveryResponse updateDetails(Long id, DeliveryRequestDto deliveryRequestDto) throws NotFoundException;
+
+    IdResponse deleteDeliveryDetails(Long id) throws NotFoundException;
+
+
 
 
 }

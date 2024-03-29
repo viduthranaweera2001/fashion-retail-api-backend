@@ -9,6 +9,7 @@ public class DeliveryRequestDto {
     private String deliveryPersonName;
     private String customerName;
     private String customerEmail;
+    private String customerAddress;
     private String phoneNo;
 
 }
