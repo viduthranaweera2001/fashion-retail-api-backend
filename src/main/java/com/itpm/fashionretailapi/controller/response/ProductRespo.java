@@ -1,10 +1,12 @@
-package com.itpm.fashionretailapi.controller.request;
+package com.itpm.fashionretailapi.controller.response;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
-public class ProductRequest {
-    private String sup_name;
+@Builder
+public class ProductRespo {
+    private Long id;
     private String name;
     private Float price;
     private Integer stock;

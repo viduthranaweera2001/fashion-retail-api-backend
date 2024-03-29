@@ -20,9 +20,6 @@ public class User {
     private String avatar;
 
     @OneToMany(mappedBy = "user")
-    private List<Order> orderList;
-
-    @OneToMany(mappedBy = "user")
     private List<Payment> paymentList;
 
     @OneToMany(mappedBy = "user")

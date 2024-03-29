@@ -10,6 +10,11 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Integer quantity;
+    private Float price;
+
     @ManyToOne
     private User user;
+    @ManyToOne
+    private Product product;
 }

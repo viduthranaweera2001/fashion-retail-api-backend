@@ -35,8 +35,6 @@ public class DeliveryServiceImpl implements DeliveryService {
         Order order = orderRepository.findById(orderId).orElseThrow(
                 () -> new OrderNotFoundException("Order not found" + orderId));
 
-        System.out.println(order.getUser().getName());
-        System.out.println(order.getUser().getEmail());
         System.out.println(order.getAddress());
         System.out.println(order.getPhoneNumber());
 
@@ -46,8 +44,6 @@ public class DeliveryServiceImpl implements DeliveryService {
         deliveryActionPlaced.setDeliveryPersonName(deliveryPerson.getName());
         deliveryActionPlaced.setAddress(order.getAddress());
         deliveryActionPlaced.setPhoneNo(order.getPhoneNumber());
-        deliveryActionPlaced.setCustomerName(order.getUser().getName());
-        deliveryActionPlaced.setCustomerEmail(order.getUser().getEmail());
 
         deliveryActionPlaced.setOrder(order);
 

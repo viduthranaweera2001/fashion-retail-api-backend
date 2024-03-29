@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class IdResponse {
-    private String message;
+public class CartResponse {
+    private String responseMsg;
 }
+
