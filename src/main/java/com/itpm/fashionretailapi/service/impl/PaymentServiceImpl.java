@@ -42,6 +42,7 @@ public class PaymentServiceImpl implements PaymentService {
         payment.setUser(order.getUser());
         payment.setOrder(order);
         payment.setStatus(Status.SUCCESS);
+        payment.setPrice(order.getTotalPrice());
 
         paymentRepository.save(payment);
 

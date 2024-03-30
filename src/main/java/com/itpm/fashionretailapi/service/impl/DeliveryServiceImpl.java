@@ -33,16 +33,11 @@ public class DeliveryServiceImpl implements DeliveryService {
     public DeliveryResponse saveDelivery(DeliveryRequest deliveryRequest, Long orderId) throws OrderNotFoundException {
 
         DeliveryPerson deliveryPerson = deliveryPersonRepository.findByName(deliveryRequest.getDeliveryPersonName());
-        // Find order by ID
+
         Order order = orderRepository.findById(orderId).orElseThrow(
                 () -> new OrderNotFoundException("Order not found" + orderId));
 
         User customer = userRepository.findByName(deliveryRequest.getOrderPlacedCustomer());
-
-        System.out.println(order.getAddress());
-        System.out.println(order.getPhoneNumber());
-        System.out.println(customer.getEmail());
-        System.out.println(customer.getName());
 
         DeliveryActionPlaced deliveryActionPlaced = new DeliveryActionPlaced();
 
@@ -117,7 +112,7 @@ public class DeliveryServiceImpl implements DeliveryService {
                 () -> new NotFoundException(" No Such Delivery Found With Id "+id)
         );
 
-        // Fetch the DeliveryPerson object using the deliveryPersonId from the DTO
+
         DeliveryPerson deliveryPerson = deliveryPersonRepository.findById(deliveryRequestDto.getDeliveryPersonId())
                 .orElseThrow(() -> new NotFoundException("No Such DeliveryPerson Found With Id " + deliveryRequestDto.getDeliveryPersonId()));
 
